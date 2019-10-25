@@ -107,7 +107,7 @@ The endpoints serve up the following:
 ```
 
 The `blockHistory` is an array representing a student's completion of blocks. Each item represents a block.
-I.e. The student above will have sat core twice and will currently be on back-end-1.
+I.e. The student above will have sat Fundamentals twice and will currently be on Back-End.
 
 ### **PATCH** `/api/students/:id?progress={true/false}`
 
