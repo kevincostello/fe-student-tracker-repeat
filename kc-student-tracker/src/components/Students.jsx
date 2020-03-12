@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import StudentList from "./StudentList";
 
 export default class Students extends Component {
-  state = { students: [], isLoading: true };
+  state = { students: [], isLoading: true, showMoreInfo: false };
   render() {
-    const { isLoading, students } = this.state;
+    const { isLoading, students, showMoreInfo } = this.state;
     return (
       <>
         {isLoading ? (
@@ -12,8 +12,9 @@ export default class Students extends Component {
         ) : (
           <>
             <h2>List of students:</h2>
+            <button onClick={this.toggleInfo}>Show more info</button>
             <ul>
-              <StudentList students={students} />
+              <StudentList students={students} showMoreInfo={showMoreInfo} />
             </ul>
           </>
         )}
@@ -44,6 +45,12 @@ export default class Students extends Component {
         }
       ],
       isLoading: false
+    });
+  };
+
+  toggleInfo = () => {
+    this.setState(currentState => {
+      return { showMoreInfo: !currentState.showMoreInfo };
     });
   };
 }
