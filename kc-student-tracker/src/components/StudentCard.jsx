@@ -1,11 +1,14 @@
 import React from "react";
+import { Link } from "@reach/router";
 
 function StudentCard(props) {
   const { name, _id, startingCohort, currentBlock } = props.student;
   const { showMoreInfo } = props;
   return (
     <li className="flex-item">
-      <h3>Student name: {name}</h3>
+      <Link to={`/students/${_id}`}>
+        <h3>Student name: {name}</h3>
+      </Link>
       {showMoreInfo ? (
         <>
           <h3>Student id: {_id}</h3>
