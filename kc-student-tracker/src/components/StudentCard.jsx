@@ -4,7 +4,7 @@ function StudentCard(props) {
   const { name, _id, startingCohort, currentBlock } = props.student;
   const { showMoreInfo } = props;
   return (
-    <li>
+    <li className="flex-item">
       <h3>Student name: {name}</h3>
       {showMoreInfo ? (
         <>

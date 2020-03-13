@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import StudentList from "./StudentList";
+import axios from "axios";
 
 export default class Students extends Component {
   state = { students: [], isLoading: true, showMoreInfo: false };
@@ -13,7 +14,7 @@ export default class Students extends Component {
           <>
             <h2>List of students:</h2>
             <button onClick={this.toggleInfo}>Show more info</button>
-            <ul>
+            <ul className="flex-container">
               <StudentList students={students} showMoreInfo={showMoreInfo} />
             </ul>
           </>
@@ -23,34 +24,20 @@ export default class Students extends Component {
   }
 
   componentDidMount = () => {
-    this.setState({
-      students: [
-        {
-          _id: "5e5e2ac1ca5ef400176fb0b1",
-          name: "bnm,,.",
-          startingCohort: -1,
-          currentBlock: "grad"
-        },
-        {
-          _id: "5e5e2ac3ca5ef400176fb0b2",
-          name: "bnm,,.",
-          startingCohort: -1,
-          currentBlock: "fun"
-        },
-        {
-          _id: "5e5e2ac4ca5ef400176fb0b3",
-          name: "bnm,,.",
-          startingCohort: -1,
-          currentBlock: "fun"
-        }
-      ],
-      isLoading: false
-    });
+    this.getStudents();
   };
 
   toggleInfo = () => {
     this.setState(currentState => {
       return { showMoreInfo: !currentState.showMoreInfo };
+    });
+  };
+
+  getStudents = () => {
+    const url = "https://nc-student-tracker.herokuapp.com/api/students";
+    axios.get(url).then(({ data }) => {
+      const { students } = data;
+      this.setState({ students, isLoading: false });
     });
   };
 }
